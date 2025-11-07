@@ -163,6 +163,26 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   {
+    'chrisgrieser/nvim-origami',
+    event = 'VeryLazy',
+    opts = {}, -- needed even when using default config
+
+    -- recommended: disable vim's auto-folding
+    init = function()
+      vim.opt.foldlevel = 99
+      vim.opt.foldlevelstart = 99
+      vim.api.nvim_set_keymap(
+        'n', -- Mode: 'n' for Normal mode
+        '<Tab>', -- Key: The Tab key
+        'za', -- Action: The Vim command to toggle a fold (za)
+        {
+          noremap = true, -- Non-recursive mapping
+          silent = true, -- Don't show the mapping command in the command line
+        }
+      )
+    end,
+  },
+  {
     {
       'olimorris/onedarkpro.nvim',
       priority = 1000, -- Ensure it loads first
