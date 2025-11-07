@@ -26,6 +26,9 @@ vim.o.tabstop = 4 -- The width of a hard tab character
 vim.opt.title = true
 vim.opt.titlestring = '%t'
 
+-- My preferred column limit highlighting
+vim.opt.colorcolumn = '80'
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
