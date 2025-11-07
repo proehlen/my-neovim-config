@@ -22,6 +22,10 @@ vim.o.shiftwidth = 4 -- Number of spaces to use for each step of (auto)indent
 vim.o.softtabstop = 4 -- Number of spaces to treat a <Tab> as (if 'expandtab' is on)
 vim.o.tabstop = 4 -- The width of a hard tab character
 
+-- My preferred titlestring
+vim.opt.title = true
+vim.opt.titlestring = '%t'
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
