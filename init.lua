@@ -166,16 +166,41 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   {
-    -- TODO https://github.com/leoluz/nvim-dap-go SETUP STEP NEEDED
     'mfussenegger/nvim-dap',
     event = 'VeryLazy',
     dependencies = {
-      'rcarriga/nvim-dap-ui',
       'leoluz/nvim-dap-go',
+      'rcarriga/nvim-dap-ui',
+      'theHamsta/nvim-dap-virtual-text',
       'nvim-neotest/nvim-nio',
       'jay-babu/mason-nvim-dap.nvim',
-      'theHamsta/nvim-dap-virtual-text',
+      'williamboman/mason.nvim',
     },
+    config = function()
+      local dap = require 'dap'
+
+      require('dapui').setup()
+      require('dap-go').setup()
+
+      vim.keymap.set('n', '<space>d', 'Debug')
+      vim.keymap.set('n', '<space>db', dap.toggle_breakpoint, { desc = 'Toggle (b)reakpoint' })
+      vim.keymap.set('n', '<space>dc', dap.run_to_cursor, { desc = 'Run to (c)ursor' })
+      vim.keymap.set('n', '<space>dn', dap.continue, { desc = 'Start (n)ew debugger' })
+
+      local dapui = require 'dapui'
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+      end
+    end,
   },
   {
     'chrisgrieser/nvim-origami',
