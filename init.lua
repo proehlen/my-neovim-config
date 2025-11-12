@@ -166,6 +166,18 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   {
+    -- TODO https://github.com/leoluz/nvim-dap-go SETUP STEP NEEDED
+    'mfussenegger/nvim-dap',
+    event = 'VeryLazy',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
+      'leoluz/nvim-dap-go',
+      'nvim-neotest/nvim-nio',
+      'jay-babu/mason-nvim-dap.nvim',
+      'theHamsta/nvim-dap-virtual-text',
+    },
+  },
+  {
     'chrisgrieser/nvim-origami',
     event = 'VeryLazy',
     opts = {}, -- needed even when using default config
