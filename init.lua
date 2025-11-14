@@ -178,6 +178,7 @@ require('lazy').setup({
     },
     config = function()
       local dap = require 'dap'
+      local dapui = require 'dapui'
 
       require('dapui').setup()
       require('dap-go').setup()
@@ -186,6 +187,8 @@ require('lazy').setup({
       vim.keymap.set('n', '<space>db', dap.toggle_breakpoint, { desc = 'Toggle (b)reakpoint' })
       vim.keymap.set('n', '<space>dc', dap.run_to_cursor, { desc = 'Run to (c)ursor' })
       vim.keymap.set('n', '<space>dn', dap.continue, { desc = 'Start (n)ew debugger' })
+      vim.keymap.set('n', '<space>dt', dap.terminate, { desc = '(t)erminate debugger' })
+      vim.keymap.set('n', '<space>du', dapui.toggle, { desc = 'dap (u)i toggle' })
 
       local dapui = require 'dapui'
       dap.listeners.before.attach.dapui_config = function()
